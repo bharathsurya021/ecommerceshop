@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link, useParams, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useParams, useLocation, useNavigate, } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
@@ -11,11 +11,11 @@ const CartScreen = () => {
     const location = useLocation()
     const productId = params.id
 
-
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
     const dispatch = useDispatch()
-
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
     const cart = useSelector(state => state.cart)
     const { cartItems } = cart
     // console.log(cartItems);
@@ -29,8 +29,16 @@ const CartScreen = () => {
         dispatch(removeFromCart(id))
     }
 
+
     const checkoutHandler = () => {
-        navigate('/login?redirecting=shipping')
+
+        if (!userInfo) {
+            navigate('/login')
+        } else {
+            navigate('/shipping')
+
+        }
+
     }
     return (
         <Row>
