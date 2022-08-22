@@ -66,19 +66,19 @@ const ProfileScreen = () => {
                 {success && <Message variant='success'>Updated Successfully</Message>}
                 {loading && <Loader />}
                 <Form onSubmit={submitHandler}>
-                    <Form.Group controlId='name' className='py-1'>
+                    <Form.Group controlId='name' className='mb-3'>
                         <Form.Label>Name</Form.Label>
                         <Form.Control type='name' placeholder='Enter name' value={name} onChange={(e) => setName(e.target.value)}></Form.Control>
                     </Form.Group>
-                    <Form.Group controlId='email' className='py-1'>
+                    <Form.Group controlId='email' className='mb-3'>
                         <Form.Label>Email Address</Form.Label>
                         <Form.Control type='email' placeholder='Enter email' value={email} onChange={(e) => setEmail(e.target.value)}></Form.Control>
                     </Form.Group>
-                    <Form.Group controlId='password' className='py-3'>
+                    <Form.Group controlId='password' className='mb-3'>
                         <Form.Label>Password</Form.Label>
                         <Form.Control type='password' placeholder='Enter password' value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
                     </Form.Group>
-                    <Form.Group controlId='confirmPassword' className='py-3'>
+                    <Form.Group controlId='confirmPassword' className='mb-3'>
                         <Form.Label>Confirm Password</Form.Label>
                         <Form.Control type='password' placeholder='Confirm password' value={confirmPassword} onChange={(e) => confirmSetPassword(e.target.value)}></Form.Control>
                     </Form.Group>

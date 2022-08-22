@@ -49,11 +49,11 @@ const RegisterScreen = () => {
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
-                <Form.Group controlId='name' className='py-1'>
+                <Form.Group controlId='name' className='mb-3'>
                     <Form.Label>Name</Form.Label>
                     <Form.Control type='name' placeholder='Enter name' value={name} onChange={(e) => setName(e.target.value)}></Form.Control>
                 </Form.Group>
-                <Form.Group controlId='email' className='py-1'>
+                <Form.Group controlId='email' className='mb-3'>
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control type='email' placeholder='Enter email' value={email} onChange={(e) => setEmail(e.target.value)}></Form.Control>
                 </Form.Group>
