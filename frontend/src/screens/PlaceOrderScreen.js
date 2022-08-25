@@ -11,11 +11,13 @@ const PlaceOrderScreen = () => {
     const navigate = useNavigate()
     const cart = useSelector(state => state.cart)
 
-    if (!cart.shippingAddress) {
-        navigate('/shipping')
-    } else if (!cart.paymentMethod) {
-        navigate('/payment')
-    }
+    useEffect(() => {
+        if (!cart.shippingAddress) {
+            navigate('/shipping')
+        } else if (!cart.paymentMethod) {
+            navigate('/payment')
+        }
+    }, [navigate, cart])
     //prices applicable
     const addDecimals = (num) => {
         return (Math.round(num * 100) / 100).toFixed(2)
