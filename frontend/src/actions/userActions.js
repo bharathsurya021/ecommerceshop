@@ -1,4 +1,4 @@
-import { USER_DETAILS_FAILURE, USER_DETAILS_REQUEST, USER_DETAILS_RESET, USER_DETAILS_SUCCESS, USER_LIST_FAILURE, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_LIST_RESET, USER_LOGIN_FAILURE, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAILURE, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_UPDATE_PROFILE_FAILURE, USER_UPDATE_PROFILE_REQUEST, USER_UPDATE_PROFILE_SUCCESS } from "../constants/userConstants"
+import { USER_DETAILS_FAILURE, USER_DETAILS_REQUEST, USER_DETAILS_RESET, USER_DETAILS_SUCCESS, USER_LIST_FAILURE, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_LIST_RESET, USER_LOGIN_FAILURE, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAILURE, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_UPDATE_PROFILE_FAILURE, USER_UPDATE_PROFILE_REQUEST, USER_UPDATE_PROFILE_SUCCESS, USER_DELETE_FAILURE, USER_DELETE_SUCCESS, USER_DELETE_REQUEST } from "../constants/userConstants"
 import axios from 'axios'
 
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
@@ -155,6 +155,31 @@ export const listUsers = () => async (dispatch, getState) => {
 
     } catch (error) {
         dispatch({ type: USER_LIST_FAILURE, payload: error.response && error.response.data.message ? error.response.data.message : error.message })
+    }
+}
+
+export const deleteUser = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: USER_DELETE_REQUEST
+        })
+
+        const { userLogin: { userInfo } } = getState()
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const { data } = await axios.delete(`/api/users/${id}`, config)
+
+        dispatch({
+            type: USER_DELETE_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({ type: USER_DELETE_FAILURE, payload: error.response && error.response.data.message ? error.response.data.message : error.message })
     }
 }
 
