@@ -10,7 +10,7 @@ import uploadRoutes from './routes/uploadRoutes.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import { Socket } from 'net'
 
-Socket = io.listen(process.env.PORT)
+socket = io.listen(process.env.PORT)
 dotenv.config()
 
 connectDB()
