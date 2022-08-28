@@ -8,6 +8,9 @@ import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
+import { Socket } from 'net'
+
+Socket = io.listen(process.env.PORT)
 dotenv.config()
 
 connectDB()
